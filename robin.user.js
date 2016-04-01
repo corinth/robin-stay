@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         Robin Grow
+// @name         Robin Stay
 // @namespace    http://tampermonkey.net/
 // @version      1.3
 // @description  Try to take over the world!
-// @author       /u/mvartan
+// @author       /u/mvartan (modified by /u/gibs)
 // @include      https://www.reddit.com/robin*
-// @updateURL    https://github.com/vartan/robin-grow/raw/master/robin.user.js
+// @updateURL    https://github.com/corinth/robin-stay/raw/master/robin.user.js
 // @grant   GM_getValue
 // @grant   GM_setValue
 // ==/UserScript==
@@ -63,7 +63,7 @@ function update() {
         window.location.reload(); // reload if we haven't seen any activity in a minute.
     }
     if($(".robin-message--message:contains('that is already your vote')").length === 0) {
-        $(".text-counter-input").val("/vote grow").submit();
+        $(".text-counter-input").val("/vote stay").submit();
     }
 
     // Try to join if not currently in a chat
@@ -73,13 +73,6 @@ function update() {
                 $("#joinRobin").click();
             }, 1000);
     }
-}
-
-if(GM_getValue("chatName") != name) {
-    GM_setValue("chatName", name);
-    setTimeout(function() {
-            $(".text-counter-input").val("[Robin-Grow] I automatically voted to grow, and so can you! http://redd.it/4cwk2s !").submit();
-        }, 10000);
 }
 
 // hash string so finding spam doesn't take up too much memory
